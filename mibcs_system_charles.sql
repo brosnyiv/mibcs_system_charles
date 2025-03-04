@@ -33,6 +33,7 @@ CREATE TABLE Students (
     program_id INT NOT NULL, -- Reference Programs table
     course_id INT, -- Updated for Foreign Key
     password_hash VARCHAR(255) NOT NULL,
+    School VARCHAR(9) NOT NULL,
     status_ VARCHAR(9) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -64,6 +65,7 @@ CREATE TABLE Courses (
     course_description TEXT,
     program_id INT NOT NULL,
     number_of_courseunits INT NOT NULL,
+    amount_to_be paid  int Not NULL,
     credits INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -79,6 +81,19 @@ CREATE TABLE Courseunits (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
 );
+
+create table funds (
+ funds_id int PRIMARY key,
+ student_id int ,
+ course_id int,
+ amount_paid int,
+ balance int,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+     FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
 
 CREATE TABLE Enrollments (
     enrollment_id INT PRIMARY KEY,
@@ -202,11 +217,11 @@ INSERT INTO Students (
     student_id, sur_name, first_name, middle_name, dob, gender, profile_photo, village, city, phone_number, email,
     session_study, parent_name, relationship_id, parent_phone, parent_email, secondary_contact_name, 
     secondary_contact_phone, secondary_contact_email, admission_number, enrollment_date, classroom_id, program_id, 
-    course_id, password_hash, status_
+    course_id, password_hash,school, status_
 ) VALUES (
-    1, 'Smith', 'John', 'A.', '2005-01-15', 'Male', 'john_profile.jpg', 'Downtown', 'Cityville', '1234567890', 'john.smith@example.com',
+    1, 'Smith', 'John', 'A.', '2005-01-15', 'Male', 'john_profile.jpg', 'Downtown', 'Cityville', '1234567890', 'project@example.com',
     'Day', 'Michael Smith', 1, '9876543210', 'michael.smith@example.com', 'Anna Smith', '5678901234', 'anna.smith@example.com',
-    'ADM001', '2023-09-01', 1, 1, 1, 'hashed_password_here', 'Active'
+    'ADM001', '2023-09-01', 1, 1, 1, '123456789','school', 'Active'
 );
 
 INSERT INTO Relationships (relationship_id, relationship_name) VALUES
