@@ -3,9 +3,9 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE MibcsSystem;
+CREATE DATABASE mibcs_system_charles;
 
-USE MibcsSystem;
+USE mibcs_system_charles;
 
 CREATE TABLE Students (
     student_id INT PRIMARY KEY,
