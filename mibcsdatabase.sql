@@ -64,6 +64,7 @@ CREATE TABLE Courses (
     course_description TEXT,
     program_id INT NOT NULL,
     number_of_courseunits INT NOT NULL,
+    amount_to_be paid  int Not NULL,
     credits INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -79,6 +80,19 @@ CREATE TABLE Courseunits (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
 );
+
+create table funds (
+ funds_id int PRIMARY key,
+ student_id int ,
+ course_id int,
+ amount_paid int,
+ balance int,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+     FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
 
 CREATE TABLE Enrollments (
     enrollment_id INT PRIMARY KEY,
