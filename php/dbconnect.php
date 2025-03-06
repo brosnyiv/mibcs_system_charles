@@ -10,7 +10,7 @@ DEFINE("BASE_URL","http://localhost/SchoolFeesSystem/");
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PSWD', ''); 
 DEFINE ('DB_HOST', 'localhost'); 
-DEFINE ('DB_NAME', 'MibcsSystem'); 
+DEFINE ('DB_NAME', 'mibcs_system_charles'); 
 
 date_default_timezone_set('Asia/Calcutta'); 
 $conn =  new mysqli(DB_HOST,DB_USER,DB_PSWD,DB_NAME);
