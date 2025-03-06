@@ -13,7 +13,6 @@ if (isset($_POST['login'])) {
     } else {
         $sql = "SELECT * FROM Students WHERE student_id='" . $student_id . "' AND password_hash='" . $password_hash . "'";
         $q = $conn->query($sql);
-
         
     }
 }
@@ -31,7 +30,7 @@ if (isset($_POST['login'])) {
 <body>
     <div class="login">
         <h1>MIBCS Login</h1>
-        <form action="login.php" method="post">
+        <form method="post">
             <label for="student_id">
                 <i class="fas fa-user"></i>
             </label>
@@ -42,7 +41,7 @@ if (isset($_POST['login'])) {
             <label for="password">
                 <i class="fas fa-lock"></i>
             </label>
-            <input type="password" name="password" placeholder="Password" id="password" required>
+            <input type="password" name="password_hash" placeholder="Password" id="password" required>
             <?php echo $invalidLoginError; ?>
             <?php echo $pendingAccountError; ?>
             <input type="submit" name="login" value="Login">
