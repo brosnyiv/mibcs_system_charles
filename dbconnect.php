@@ -10,7 +10,7 @@ DEFINE("BASE_URL","http://localhost/portal/");
 DEFINE('DB_USER', 'root');
 DEFINE('DB_PSWD', ''); // No password
 DEFINE('DB_HOST', 'localhost'); 
-DEFINE('DB_NAME', 'MibcsSystem'); 
+DEFINE('DB_NAME', 'mibcs_system_charles'); 
 
 date_default_timezone_set('Asia/Calcutta'); 
 
