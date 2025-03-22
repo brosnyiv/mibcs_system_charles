@@ -5,13 +5,13 @@ include("checklogin.php");
 $month = date("M");
 $year = date("Y");
 $num = 30;
-$user_id = $_SESSION['student_id'];
+$email = $_SESSION['email'];
 
 // Ensure that user_id is an integer to avoid SQL injection
-$user_id = intval($user_id);
+$email = intval($email);
 
 // Direct SQL query instead of prepared statements
-$sql = "SELECT * FROM Students WHERE student_id = $user_id";
+$sql = "SELECT * FROM Students WHERE email = $email";
 
 // Execute the query
 $result = mysqli_query($conn, $sql);
