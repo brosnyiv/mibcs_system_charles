@@ -204,6 +204,7 @@ CREATE TABLE funds (
     funds_id INT PRIMARY KEY,
     student_id INT NOT NULL, -- Added NOT NULL
     course_id INT NOT NULL, -- Added NOT NULL
+    total_tuition DECIMAL(10, 2) NOT NULL, -- Changed to DECIMAL
     amount_paid DECIMAL(10, 2) NOT NULL, -- Changed to DECIMAL
     balance DECIMAL(10, 2) NOT NULL, -- Changed to DECIMAL
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
