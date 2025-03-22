@@ -1,8 +1,6 @@
 <?php
     include("php/dbconnect.php");
 
-    session_start();
-
     // Check if session variable 'student_id' is set
     if(isset($_SESSION['email'])) {
         $email = $_SESSION['email'];

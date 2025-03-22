@@ -22,29 +22,29 @@
     // Fetch other relevant data, for example, total paid, balance, etc.
     $year = date('Y');  // Example for the current year
     
-/*     // Example query for total paid
+    // Example query for total paid
     $sql_paid = "SELECT SUM(amount) AS total_amount FROM funds WHERE year = '$year' AND status = 'Verified'";
     $result_paid = $conn->query($sql_paid);
     $row_paid = $result_paid->fetch_assoc();
-    $total_paid = number_format($row_paid['total_amount'] ?? 0); */
+    $total_paid = number_format($row_paid['total_amount'] ?? 0);
 
     // Example query for total balance
-    /* $sql_balance = "SELECT SUM(balance) AS total_balance FROM request WHERE year = '$year' AND status = 'Completed'";
+    $sql_balance = "SELECT SUM(approved_amount) AS total_balance FROM request WHERE year = '$year' AND status = 'Completed'";
     $result_balance = $conn->query($sql_balance);
     $row_balance = $result_balance->fetch_assoc();
-    $total_balance = number_format($row_balance['total_balance'] ?? 0); */
+    $total_balance = number_format($row_balance['total_balance'] ?? 0);
 
-    /* // Example query for tuition fees
+    // Example query for tuition fees
     $sql_tuition = "SELECT SUM(expected_amount) AS total_tuition FROM request WHERE year = '$year' AND status = 'Pending'";
     $result_tuition = $conn->query($sql_tuition);
     $row_tuition = $result_tuition->fetch_assoc();
-    $total_tuition = number_format($row_tuition['total_tuition'] ?? 0); */
+    $total_tuition = number_format($row_tuition['total_tuition'] ?? 0);
 
-    /* // Example query for total course units
+    // Example query for total course units
     $sql_courses = "SELECT COUNT(*) AS total_courses FROM request WHERE status = 'Pending'";
     $result_courses = $conn->query($sql_courses);
     $row_courses = $result_courses->fetch_assoc();
-    $total_courses = number_format($row_courses['total_courses'] ?? 0); */
+    $total_courses = number_format($row_courses['total_courses'] ?? 0);
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +71,7 @@
                                     Paid (<?php echo htmlspecialchars($year); ?>)
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    Ugx.  <!-- Echo removed -->
+                                    Ugx. <?php echo $total_paid; ?>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -92,7 +92,7 @@
                                     Balance (<?php echo htmlspecialchars($year); ?>)
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    Ugx.  <!-- Echo removed -->
+                                    Ugx. <?php echo $total_balance; ?>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -113,7 +113,7 @@
                                     Tuition (<?php echo htmlspecialchars($year); ?>)
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    Ugx.  <!-- Echo removed -->
+                                    Ugx. <?php echo $total_tuition; ?>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -131,10 +131,10 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Course Units  (<?php echo htmlspecialchars($year); ?>) 
+                                    Course Units (<?php echo htmlspecialchars($year); ?>)
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                     <!-- Echo removed -->
+                                    <?php echo $total_courses; ?>
                                 </div>
                             </div>
                             <div class="col-auto">
