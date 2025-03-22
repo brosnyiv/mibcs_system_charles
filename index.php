@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
             // Start session and redirect to dashboard
             $_SESSION['email'] = $email;
             // Redirect to dashboard or appropriate page
-            header("Location:hello.php");
+            header("Location:dashboard.php");
             exit();
         } else {
             // Show error if login is invalid
