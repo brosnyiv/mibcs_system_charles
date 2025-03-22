@@ -1,6 +1,7 @@
+
 <?php
     include("php/dbconnect.php");
-    
+    include("header.php");  // Include the header file
     // include("php/checklogin.php");  // Assuming you have a login check to ensure the user is logged in
 
     // Fetch the student's details from the session
