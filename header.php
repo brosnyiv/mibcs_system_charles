@@ -1,6 +1,6 @@
 <?php 
 include("dbconnect.php");
-include("php/checklogin.php");
+include("checklogin.php");
 
 $month = date("M");
 $year = date("Y");
