@@ -65,7 +65,7 @@ CREATE TABLE Courses (
     course_description TEXT,
     program_id INT NOT NULL,
     number_of_courseunits INT NOT NULL,
-    amount_to_be paid  int Not NULL,
+    amount_to_be_paid INT NOT NULL, -- Corrected column name
     credits INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -80,18 +80,6 @@ CREATE TABLE Courseunits (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
-);
-
-create table funds (
- funds_id int PRIMARY key,
- student_id int ,
- course_id int,
- amount_paid int,
- balance int,
- created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
-     FOREIGN KEY (student_id) REFERENCES students(student_id)
 );
 
 
@@ -212,6 +200,18 @@ CREATE TABLE Attendance (
     FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
 );
 
+CREATE TABLE funds (
+    funds_id INT PRIMARY KEY,
+    student_id INT NOT NULL, -- Added NOT NULL
+    course_id INT NOT NULL, -- Added NOT NULL
+    amount_paid DECIMAL(10, 2) NOT NULL, -- Changed to DECIMAL
+    balance DECIMAL(10, 2) NOT NULL, -- Changed to DECIMAL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES Courses(course_id),
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+);
+
 -- Insert data into tables
 INSERT INTO Students (
     student_id, sur_name, first_name, middle_name, dob, gender, profile_photo, village, city, phone_number, email,
@@ -257,3 +257,14 @@ INSERT INTO Classrooms (classroom_id, classroom_name, capacity) VALUES
 
 INSERT INTO Payments (payment_id, student_id, amount, payment_date, payment_method) VALUES
 (1, 1, 1000.00, '2023-09-05', 'Cash');
+
+INSERT INTO Students (
+    student_id, sur_name, first_name, middle_name, dob, gender, profile_photo, village, city, phone_number, email,
+    session_study, parent_name, relationship_id, parent_phone, parent_email, secondary_contact_name, 
+    secondary_contact_phone, secondary_contact_email, admission_number, enrollment_date, classroom_id, program_id, 
+    course_id, password_hash, School, status_
+) VALUES (
+    2, 'Doe', 'Jane', 'M.', '2004-05-20', 'Female', 'jane_profile.jpg', 'Uptown', 'Townsville', '0987654321', 'jane.doe@example.com',
+    'Evening', 'John Doe', 2, '1234567890', 'john.doe@example.com', 'Mary Doe', '0987654321', 'mary.doe@example.com',
+    'ADM002', '2023-09-01', 2, 2, 2, 'hashedpassword123', 'School A', 'Active'
+);
